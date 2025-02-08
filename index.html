@@ -99,6 +99,7 @@
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
+            width: 100%;
         }
 
         .heart {
@@ -107,6 +108,7 @@
             animation: heartbeat 1s infinite;
             display: none;
             text-shadow: 0 0 20px red;
+            margin-bottom: 40px; /* Add space below the heart */
         }
 
         @keyframes heartbeat {
@@ -119,7 +121,9 @@
             font-size: 24px;
             display: none;
             animation: fadeIn 2s forwards;
+            margin-top: 20px; /* Add space between the GIF and message */
         }
+        
 
         /* Paragraphs centered */
         .content {
@@ -135,6 +139,7 @@
             width: 80%;
             max-width: 600px;
             text-align: center;
+            margin-top: 60px; /* Push paragraphs lower */
         }
 
         .paragraphs p {
@@ -142,8 +147,8 @@
         }
 
         #loveGif {
-            width: 300px; 
-            margin-top: 20px;
+            width: 300px;
+            margin-top: 50px; /* Add more space above GIF */
             display: none;
         }
 
