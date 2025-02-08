@@ -18,30 +18,38 @@
         $(document).ready(function(){
             let currentParagraph = 0;
             let paragraphs = $(".paragraphs p");
-            paragraphs.hide(); 
-            $("#nextButton").hide(); 
-
+            let gif = $("#loveGif");
+            let message = $(".message");
+        
+            paragraphs.hide();
+            $("#nextButton").hide();
+            gif.hide();
+            message.hide(); // Ensure the message is hidden at the start
+        
             $("#playButton").on("click", function(){
-                PlayMusic(80); 
-                $(this).hide(); 
-                
+                PlayMusic(164);
+                $(this).hide();
+        
                 $(".heart").fadeIn(800);
-                $(".message").fadeIn(1200);
-                $("#nextButton").fadeIn(1800); 
-                paragraphs.eq(0).fadeIn(2000); 
+                $("#nextButton").fadeIn(1800);
+                paragraphs.eq(0).fadeIn(2000);
             });
-
+        
             $("#nextButton").on("click", function(){
                 paragraphs.eq(currentParagraph).fadeOut(500, function() {
                     currentParagraph++;
                     if (currentParagraph < paragraphs.length) {
                         paragraphs.eq(currentParagraph).fadeIn(500);
                     } else {
-                        $("#nextButton").hide(); 
+                        $("#nextButton").hide();
+                        gif.fadeIn(1500, function() {
+                            message.fadeIn(1200); // Show message only after GIF is fully visible
+                        });
                     }
                 });
             });
         });
+        
     </script>
     <style>
         body {
@@ -106,6 +114,12 @@
             display: none;
         }
 
+        #loveGif {
+            width: 300px; 
+            margin-top: 20px;
+            display: none;
+        }
+
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -125,7 +139,7 @@
 <body>
     <div class="header">
         <div class="heart">❤️</div>
-        <div class="message">With Love, Always & Forever ❤️</div>
+        <div style="display: none" class="message">With Love, Always & Forever ❤️</div>
     </div>
 
     <div class="content">
@@ -137,6 +151,9 @@
             <p>No matter where life takes us, one thing will always be true: you have my heart. Not just today, not just tomorrow, but always. Because love like this isn’t temporary—it’s forever.. ❤️</p>
         </div>
         <button id="nextButton">Next</button>
+
+        <!-- GIF Appears After the Last Paragraph -->
+        <img id="loveGif" src="beloved.gif" alt="Love GIF">
     </div>
 
     <audio id="music">
