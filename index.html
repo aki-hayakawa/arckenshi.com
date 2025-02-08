@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>With Love ❤️ | Arckenshi.com</title>
+    <title>Beloved</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         function PlayMusic(startTime = 0) {
@@ -63,11 +63,15 @@
                     } else {
                         $("#nextButton").hide();
                         gif.fadeIn(1500, function() {
-                            message.fadeIn(1200); // Show message only after GIF is fully visible
+                            $(".heart").fadeOut(500, function() {
+                                message.css("display", "flex").hide().fadeIn(1200); // Show message in heart's place
+                            });
                         });
                     }
                 });
             });
+            
+            
         });
         
         $("#playButton").on("click", function(){
@@ -170,13 +174,14 @@
 <body>
     <div class="header">
         <p id="introText">A little something special for you... 💖</p>
+        <div style="display: none;" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div>
         <div class="heart">❤️</div>
-        <div style="display: none; margin-top: 5px" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div>
+        <!-- <div style="display: none; margin-top: 5px" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div> -->
     </div>
 
     <div class="content">
         <button id="playButton">Click here</button>
-        <div class="paragraphs">
+        <div style="margin-top: 100px" class="paragraphs">
             <p>I don’t even know where to start because no matter what I say, it will never be enough to fix the pain I’ve caused you. I’ve hurt you in ways I never should have, and for that, I hate myself. You deserve love, trust, and happiness—not the selfishness and mistakes I’ve brought into your life. And I am so, so sorry for all of it. If I could take it all back, I would.</p>
             <p>I know my words might not mean much anymore because I’ve broken my promises before. But please, believe me when I say I am not the same person I was when I hurt you. Losing your trust made me realize just how much I took you for granted, and I swear to you—I never want to be that person again. I never want to be the reason you feel hurt, tired, or unloved.</p>
             <p>I see now how much I have damaged something so precious. And the fact that you still even look in my direction after everything I’ve done… I don’t deserve that. I don’t deserve you. But if there’s even the smallest part of you that still believes in me, in us, then I will spend the rest of my life proving to you that I can be better. That I want to be better—not just for me, but for you.</p>
