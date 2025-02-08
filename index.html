@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>With Love ❤️ | Arckenshi.com</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <style>
         body {
             display: flex;
@@ -44,6 +45,29 @@
 </head>
 <body>
     <div class="heart">❤️</div>
-    <div class="message">You are deeply loved, always and forever. 💖</div>
+    <script>
+        window.addEventListener("DOMContentLoaded", async function() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const audioElement = new Audio("music.mp3");
+            const track = audioCtx.createMediaElementSource(audioElement);
+    
+            track.connect(audioCtx.destination);
+    
+            try {
+                await audioCtx.resume(); // Resumes audio context
+                audioElement.play();
+            } catch (error) {
+                console.log("Auto-play blocked! Waiting for user interaction.");
+                document.addEventListener("click", () => {
+                    audioCtx.resume();
+                    audioElement.play();
+                }, { once: true });
+            }
+        });
+    </script>
+    
+    
+    
+    
 </body>
 </html>
