@@ -50,6 +50,9 @@
             });
         });
         
+        $("#playButton").on("click", function(){
+            $("#introText").fadeOut(800); // Fade out the intro text
+        });
     </script>
     <style>
         body {
@@ -134,10 +137,19 @@
         button:hover {
             background-color: darkred;
         }
+
+        #introText {
+            font-size: 20px;
+            color: white;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        
     </style>
 </head>
 <body>
     <div class="header">
+        <p id="introText">A little something special for you... 💖</p>
         <div class="heart">❤️</div>
         <div style="display: none" class="message">With Love, Always & Forever ❤️</div>
     </div>
