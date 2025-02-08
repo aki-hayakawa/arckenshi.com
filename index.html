@@ -8,12 +8,27 @@
     <script>
         function PlayMusic(startTime = 0) {
             var play = document.getElementById("music");
-
+        
             if (play.paused) {
                 play.currentTime = startTime;
+                play.volume = 0; // Start at 0 volume
                 play.play().catch(error => console.log("Autoplay failed:", error));
+        
+                // Gradually increase volume over 5 seconds
+                let fadeInDuration = 5000; // 5 seconds
+                let interval = 100; // Adjust every 100ms
+                let step = 1 / (fadeInDuration / interval); // Incremental step
+        
+                let fadeIn = setInterval(function () {
+                    if (play.volume < 1) {
+                        play.volume = Math.min(play.volume + step, 1);
+                    } else {
+                        clearInterval(fadeIn); // Stop once volume reaches 1
+                    }
+                }, interval);
             }
         }
+        
 
         $(document).ready(function(){
             let currentParagraph = 0;
@@ -29,11 +44,16 @@
             $("#playButton").on("click", function(){
                 PlayMusic(164);
                 $(this).hide();
-        
+            
+                $("#introText").fadeTo(800, 0, function() {
+                    $(this).css("visibility", "hidden"); // Keeps the space while hiding text
+                });
+            
                 $(".heart").fadeIn(800);
                 $("#nextButton").fadeIn(1800);
                 paragraphs.eq(0).fadeIn(2000);
             });
+            
         
             $("#nextButton").on("click", function(){
                 paragraphs.eq(currentParagraph).fadeOut(500, function() {
@@ -151,21 +171,21 @@
     <div class="header">
         <p id="introText">A little something special for you... 💖</p>
         <div class="heart">❤️</div>
-        <div style="display: none" class="message">With Love, Always & Forever ❤️</div>
+        <div style="display: none; margin-top: 5px" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div>
     </div>
 
     <div class="content">
         <button id="playButton">Click here</button>
         <div class="paragraphs">
-            <p>From the moment we met, every day has felt like an adventure. Not the kind where you just travel places, but the kind where every laugh, every shared moment, and even every challenge feels meaningful—because I'm experiencing it with you.</p>
-            <p>No matter where we are or what we’re doing, time feels different when I’m with you. Even the simplest moments—your smile, the way you say my name, the way you look at me—become beautiful memories that I never want to forget.</p>
-            <p>I never believed in fairytales, but then you came into my life. With you, love isn’t just a story—it’s real, it’s us. Every day we write a new page, and I can’t wait to keep writing it with you.</p>
-            <p>No matter where life takes us, one thing will always be true: you have my heart. Not just today, not just tomorrow, but always. Because love like this isn’t temporary—it’s forever.. ❤️</p>
+            <p>I don’t even know where to start because no matter what I say, it will never be enough to fix the pain I’ve caused you. I’ve hurt you in ways I never should have, and for that, I hate myself. You deserve love, trust, and happiness—not the selfishness and mistakes I’ve brought into your life. And I am so, so sorry for all of it. If I could take it all back, I would.</p>
+            <p>I know my words might not mean much anymore because I’ve broken my promises before. But please, believe me when I say I am not the same person I was when I hurt you. Losing your trust made me realize just how much I took you for granted, and I swear to you—I never want to be that person again. I never want to be the reason you feel hurt, tired, or unloved.</p>
+            <p>I see now how much I have damaged something so precious. And the fact that you still even look in my direction after everything I’ve done… I don’t deserve that. I don’t deserve you. But if there’s even the smallest part of you that still believes in me, in us, then I will spend the rest of my life proving to you that I can be better. That I want to be better—not just for me, but for you.</p>
+            <p>No matter how much time it takes, no matter how much effort I have to put in, I will never stop trying. Because you are the love of my life, and I would rather spend every day making up for my mistakes than live a life without you. If I have to rebuild your trust piece by piece, I will. If I have to remind you every single day how much you mean to me, I will. I just want you to be happy. I just want you to know that I love you, and that I always will. ❤️</p>
         </div>
         <button id="nextButton">Next</button>
 
         <!-- GIF Appears After the Last Paragraph -->
-        <img id="loveGif" src="beloved.gif" alt="Love GIF">
+        <img style="margin-top: 110px" id="loveGif" src="beloved.gif" alt="Love GIF">
     </div>
 
     <audio id="music">
