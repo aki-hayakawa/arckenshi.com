@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beloved</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function PlayMusic(startTime = 0) {
+            var play = document.getElementById("music");
+        
+            if (play.paused) {
+                play.currentTime = startTime;
+                play.volume = 0; // Start at 0 volume
+                play.play().catch(error => console.log("Autoplay failed:", error));
+        
+                // Gradually increase volume over 5 seconds
+                let fadeInDuration = 5000; // 5 seconds
+                let interval = 100; // Adjust every 100ms
+                let step = 1 / (fadeInDuration / interval); // Incremental step
+        
+                let fadeIn = setInterval(function () {
+                    if (play.volume < 1) {
+                        play.volume = Math.min(play.volume + step, 1);
+                    } else {
+                        clearInterval(fadeIn); // Stop once volume reaches 1
+                    }
+                }, interval);
+            }
+        }
+        
+
+        $(document).ready(function(){
+            let currentParagraph = 0;
+            let paragraphs = $(".paragraphs p");
+            let gif = $("#loveGif");
+            let message = $(".message");
+        
+            paragraphs.hide();
+            $("#nextButton").hide();
+            gif.hide();
+            message.hide(); // Ensure the message is hidden at the start
+        
+            $("#playButton").on("click", function(){
+                PlayMusic(164);
+                $(this).hide();
+            
+                $("#introText").fadeTo(800, 0, function() {
+                    $(this).css("visibility", "hidden"); // Keeps the space while hiding text
+                });
+            
+                $(".heart").fadeIn(800);
+                $("#nextButton").fadeIn(1800);
+                paragraphs.eq(0).fadeIn(2000);
+            });
+            
+        
+            $("#nextButton").on("click", function(){
+                paragraphs.eq(currentParagraph).fadeOut(500, function() {
+                    currentParagraph++;
+                    if (currentParagraph < paragraphs.length) {
+                        paragraphs.eq(currentParagraph).fadeIn(500);
+                    } else {
+                        $("#nextButton").hide();
+                        gif.fadeIn(1500, function() {
+                            $(".heart").fadeOut(500, function() {
+                                message.css("display", "flex").hide().fadeIn(1200); // Show message in heart's place
+                            });
+                        });
+                    }
+                });
+            });            
+        });
+        
+        $("#playButton").on("click", function(){
+            $("#introText").fadeOut(800); // Fade out the intro text
+        });
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Heart and message at the top */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+
+        .heart {
+            font-size: 80px;
+            color: red;
+            animation: heartbeat 1s infinite;
+            display: none;
+            text-shadow: 0 0 20px red;
+            margin-bottom: 40px; /* Add space below the heart */
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); text-shadow: 0 0 30px red; }
+            100% { transform: scale(1); text-shadow: 0 0 20px red; }
+        }
+
+        .message {
+            font-size: 24px;
+            display: none;
+            animation: fadeIn 2s forwards;
+            margin-top: 20px; /* Add space between the GIF and message */
+        }
+        
+
+        /* Paragraphs centered */
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .paragraphs {
+            font-size: 22px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 60px; /* Push paragraphs lower */
+        }
+
+        .paragraphs p {
+            display: none;
+        }
+
+        #loveGif {
+            width: 300px;
+            margin-top: 50px; /* Add more space above GIF */
+            display: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        #introText {
+            font-size: 20px;
+            color: white;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p id="introText">A little something special for you... 💖</p>
+        <div style="display: none;" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div>
+        <div class="heart">❤️</div>
+        <!-- <div style="display: none; margin-top: 5px" class="message">With Love, Always & Forever 🤍🩵🦋🐢🦕🪼🦭</div> -->
+    </div>
+
+    <div class="content">
+        <button id="playButton">Click here</button>
+        <div style="margin-top: 100px" class="paragraphs">
+            <p>I don’t even know where to start because no matter what I say, it will never be enough to fix the pain I’ve caused you. I’ve hurt you in ways I never should have, and for that, I hate myself. You deserve love, trust, and happiness—not the selfishness and mistakes I’ve brought into your life. And I am so, so sorry for all of it. If I could take it all back, I would.</p>
+            <p>I know my words might not mean much anymore because I’ve broken my promises before. But please, believe me when I say I am not the same person I was when I hurt you. Losing your trust made me realize just how much I took you for granted, and I swear to you—I never want to be that person again. I never want to be the reason you feel hurt, tired, or unloved.</p>
+            <p>I see now how much I have damaged something so precious. And the fact that you still even look in my direction after everything I’ve done… I don’t deserve that. I don’t deserve you. But if there’s even the smallest part of you that still believes in me, in us, then I will spend the rest of my life proving to you that I can be better. That I want to be better—not just for me, but for you.</p>
+            <p style="margin-top: 10px">No matter how much time it takes, no matter how much effort I have to put in, I will never stop trying. Because you are the love of my life, and I would rather spend every day making up for my mistakes than live a life without you. If I have to rebuild your trust piece by piece, I will. If I have to remind you every single day how much you mean to me, I will. I just want you to be happy. I just want you to know that I love you, and that I always will. ❤️</p>
+        </div>
+        <button id="nextButton">Next</button>
+
+        <!-- GIF Appears After the Last Paragraph -->
+        <img style="margin-top: 110px" id="loveGif" src="beloved.gif" alt="Love GIF">
+    </div>
+
+    <audio id="music">
+        <source src="https://arckenshi.com/music.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
