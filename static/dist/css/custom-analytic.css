@@ -1,0 +1,139 @@
+.analytic-body {
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: black;
+}
+
+.analytic-page-title {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.analytic-card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    border: 1px solid #cbd5e1;
+}
+
+.analytic-title {
+    font-weight: 500;
+}
+
+.analytic-card-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.primary-color {
+    color: #0BC196;
+}
+
+.analytic-icon-base {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+.icon-background {
+    background-color: #F1F5F9;
+}
+
+.icon-border {
+    border: 1px solid #cbd5e1;
+}
+
+.emerald-100 {
+    background-color: #D1FAE5;
+}
+
+.analytic-message {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.analytic-icon-125 {
+    font-size: 1.25rem;
+}
+
+.analytic-icon-150 {
+    font-size: 1.5rem;
+}
+
+.analytic-icon-100 {
+    font-size: 1rem;
+}
+
+.subtitle-color {
+    color: #64748B;
+}
+
+.red-600 {
+    color: #DC2626;
+}
+
+.analytic-icon-150-svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.analytic-tank {
+    width: 5rem;
+    height: 10rem;
+    border-radius: 0.25rem;
+    border: 1px solid #cbd5e1;
+}
+
+.analytic-icon-025 {
+    font-size: 0.25rem;
+}
+
+.row, .col {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 1rem;
+}
+
+.analytic-tooltip {
+    cursor: pointer;
+}
+
+.yellow-100 {
+    background-color: #FEF9C3;
+}
+
+.yellow-500 {
+    color: #eab308;
+}
+
+.analytic-icon-125-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.analytic-icon-0875 {
+    font-size: 0.875rem;
+}
+
+.accordion-item {
+    border: none;
+    background-color: transparent;
+}
+
+.accordion-button, .accordion-button:not(.collapsed) {
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    color: black;
+}
+
+.accordion-body {
+    padding: 0;
+}
+
+.tooltip-title {
+    font-weight: 600;
+}
+
+.tooltip-fraction {
+    border-bottom: 1px solid white;
+}
